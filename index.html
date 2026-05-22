@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AxisCalibrator — Controller Deadzone Tester</title>
+    <meta name="description" content="AxisCalibrator — check controller stick drift and deadzones with your browser's Gamepad API." />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon-embed.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/logo.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#1b1f2b" />
+    <meta name="msapplication-TileImage" content="assets/logo.png" />
+    <meta property="og:title" content="AxisCalibrator" />
+    <meta property="og:description" content="AxisCalibrator — check controller stick drift and deadzones." />
+    <meta property="og:image" content="assets/logo.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <img src="assets/logo.png" alt="AxisCalibrator" class="logo" />
+      <div>
+            <h1>AxisCalibrator</h1>
+          <p class="tag">Controller Deadzone &amp; Drift Tester</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="left">
+        <div id="status" class="status">No controller connected. Connect a controller and press any button.</div>
+
+        <div class="sticks">
+          <div class="stick-card">
+            <h3>Left Stick</h3>
+            <div class="stick" id="left-stick">
+              <canvas id="left-canvas" class="stick-canvas" width="340" height="340" aria-label="Left stick visual"></canvas>
+            </div>
+            <div class="axis-values" id="left-values">
+              <div>X: <span id="lx">0.00</span></div>
+              <div>Y: <span id="ly">0.00</span></div>
+              <div>Mag: <span id="lm">0.00</span></div>
+            </div>
+          </div>
+
+          <div class="stick-card">
+            <h3>Right Stick</h3>
+            <div class="stick" id="right-stick">
+              <canvas id="right-canvas" class="stick-canvas" width="340" height="340" aria-label="Right stick visual"></canvas>
+            </div>
+            <div class="axis-values" id="right-values">
+              <div>X: <span id="rx">0.00</span></div>
+              <div>Y: <span id="ry">0.00</span></div>
+              <div>Mag: <span id="rm">0.00</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="axes-list" id="axes-list"></div>
+
+      </section>
+
+      <aside class="controls">
+        <h2>Controls</h2>
+
+        <label class="row">Deadzone:
+          <input id="deadzone" type="range" min="0" max="0.5" step="0.001" value="0.08" />
+          <span id="deadzone-value">0.080</span>
+        </label>
+
+        <div class="buttons">
+          <button id="auto-calibrate">Auto-calibrate</button>
+          <button id="measure-rest">Measure resting drift</button>
+          <button id="recenter">Re-center</button>
+          <button id="reset">Reset</button>
+        </div>
+
+        <div class="result" id="drift-result"></div>
+
+        <details class="instructions">
+          <summary>How to use</summary>
+          <ol>
+            <li>Connect a supported gamepad and press a button.</li>
+            <li>Leave sticks untouched and click "Measure resting drift" to detect drift.</li>
+            <li>Use "Auto-calibrate" to estimate a recommended deadzone.</li>
+            <li>Adjust the slider to set your preferred deadzone.</li>
+          </ol>
+          <p>This is a static site intended for GitHub Pages (HTTPS). The Gamepad API requires secure contexts — GitHub Pages uses HTTPS so it will work on the published site.</p>
+        </details>
+
+        <footer class="footer">
+          <small>AxisCalibrator — Simple and clean</small>
+        </footer>
+      </aside>
+    </main>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
