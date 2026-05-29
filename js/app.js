@@ -17,7 +17,6 @@
   const autoBtn = document.getElementById('auto-calibrate');
   const measureBtn = document.getElementById('measure-rest');
   const resetBtn = document.getElementById('reset');
-  const recenterBtn = document.getElementById('recenter');
   const driftResult = document.getElementById('drift-result');
 
   let deadzone = parseFloat(deadzoneInput.value) || 0.08;
@@ -307,9 +306,7 @@
     measureBtn.disabled = true;
     measureResting().finally(() => (measureBtn.disabled = false));
   });
-  recenterBtn.addEventListener('click', () => {
-    calibrateBaseline();
-  });
+  // Re-center button removed (Reset handles baseline calibration)
   resetBtn.addEventListener('click', () => {
     setDeadzone(0.08);
     driftResult.textContent = '';
